@@ -1,8 +1,8 @@
 import 'dotenv/config'
 import cors from 'cors'
 import express, { Response, Request } from 'express'
-import perspective from './perspective'
-import { getUser, getUserTweets } from './twitter'
+import perspective from './perspective/index.js'
+import { getUser, getUserTweets } from './twitter/index.js'
 
 const app = express()
 app.use(express.static('public'))
@@ -20,6 +20,7 @@ app.post('/api/analyze', async (req: Request, res: Response) => {
   }
   if (!lang) {
     res.status(400).send('No language provided!')
+    return
   }
   res.send(await perspective(res, text, lang))
 })

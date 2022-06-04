@@ -2,12 +2,13 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node index.ts",
-    "start:watch": "nodemon index.ts"
+    "start": "npm run build && node ./dist/index.js",
+    "build": "tsc",
+    "start:watch": "nodemon --watch './**/*.ts' --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' ./index.ts"
   },
   "keywords": [],
   "author": "",

@@ -63,7 +63,7 @@ const handleAnalysis = async (text: string, lang: string, requestedAttributes: {
 const getAnalyze = async (text: string, lang: string) => {
   let requestedAttributes
   let attributeCount
-  if (lang in coreLangs) {
+  if (coreLangs.includes(lang)) {
     requestedAttributes = {
       TOXICITY: {},
       THREAT: {},
@@ -72,7 +72,7 @@ const getAnalyze = async (text: string, lang: string) => {
     }
     attributeCount = 9
   }
-  if (lang in additionalLangs) {
+  if (additionalLangs.includes(lang)) {
     requestedAttributes = {
       TOXICITY: {},
     }
@@ -94,7 +94,6 @@ const perspective = async (res: Response, text: string, lang: string) => {
     res.status(400).send(attributeCount)
     return
   }
-  console.log(result)
   const attributes = result.attributeScores
   const attributeWeight: { [key in attributesTypes]: number } = {
     INSULT: 1,
