@@ -1,4 +1,5 @@
 import styles from "./SearchBox.module.scss";
+import { IoSend } from "react-icons/io5";
 const SearchBox = () => {
   return (
     <div class={styles.searchBoxContainer}>
@@ -8,6 +9,7 @@ const SearchBox = () => {
         class={styles.searchBox}
         placeholder="twitter handle..."
       ></input>
+      <IoSend class={styles.sendIcon} />
     </div>
   );
 };
