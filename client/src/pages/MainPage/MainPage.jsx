@@ -1,15 +1,15 @@
 import Logo from '../../components/Logo/Logo'
 import SearchBox from '../../components/SearchBox/SearchBox'
-import TextArea from '../../components/TextArea/TextArea'
-import { Footer } from '../../components/Footer/Footer'
+import ShortInfo from '../../components/ShortInfo/ShortInfo'
+import Footer from '../../components/Footer/Footer'
 import styles from './MainPage.module.scss'
-
 const MainPage = () => {
   return (
-    <div className={styles.mainpage}>
+    <div className={styles.pageContainer}>
       <Logo />
-      <TextArea />
-      <Footer />
+      <SearchBox />
+      <ShortInfo />
+      <Footer trolls="true" />
     </div>
   )
 }
