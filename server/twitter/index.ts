@@ -2,10 +2,10 @@ import 'dotenv/config'
 import fetch from 'node-fetch'
 
 const TOKEN = process.env.TWITTER_API_TOKEN
-const URL = process.env.TWITTER_API_URL
+const TWITTER_API_URL = `https://api.twitter.com/2`
 
 const getUser = async (userName) => {
-  const response = await fetch(`${URL}/users/by/username/${userName}`, {
+  const response = await fetch(`${TWITTER_API_URL}/users/by/username/${userName}`, {
     method: 'get',
     headers: {
       'User-Agent': 'v2UserLookupJS',
@@ -17,7 +17,7 @@ const getUser = async (userName) => {
 }
 
 const getUserTweets = async (id) => {
-  const response = await fetch(`${URL}/users/${id}/tweets?tweet.fields=lang&exclude=replies,retweets&`, {
+  const response = await fetch(`${TWITTER_API_URL}/users/${id}/tweets?tweet.fields=lang&exclude=replies,retweets&`, {
     method: 'get',
     headers: {
       'User-Agent': 'v2UserLookupJS',
