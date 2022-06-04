@@ -4,7 +4,7 @@ import express, { Response, Request } from 'express'
 import perspective from './perspective/index.js'
 import { getUser, getUserTweets } from './twitter/index.js'
 import { tweetType } from './twitter/tweetType.js'
-import { attributeWeight } from './perspective/algorithm'
+import { attributeWeight } from './perspective/algorithm.js'
 
 const app = express()
 app.use(express.static('public'))
