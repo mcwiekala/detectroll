@@ -6,7 +6,7 @@ import styles from './MainPage.module.scss'
 const MainPage = () => {
   return (
     <div className={styles.pageContainer}>
-      <Logo />
+      <Logo class={styles.logo} />
       <SearchBox />
       <ShortInfo />
       <Footer trolls="true" />
