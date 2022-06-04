@@ -1,11 +1,14 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./index.scss";
-import Message from "./components/Message/Message";
-import Logo from "./components/Logo/Logo";
+import './index.scss'
+import Logo from './components/Logo/Logo'
+import { Trollscore } from './components/Trollscore/Trollscore'
 
 function App() {
-  return <Logo />;
+  return (
+    <div>
+      <Logo />
+      <Trollscore />
+    </div>
+  )
 }
 
-export default App;
+export default App

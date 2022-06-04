@@ -1,8 +1,8 @@
-import styles from './Totalscore.module.scss'
+import styles from './Trollscore.module.scss'
 import { useState } from 'react'
 
-export function Totalscore() {
-  const [isTroll, setIsTroll] = useState(true)
+export function Trollscore() {
+  const [isTroll, setIsTroll] = useState(false)
   console.log(isTroll)
 
   return (
@@ -15,7 +15,7 @@ export function Totalscore() {
           score
         </div>
       </div>
-      <div className={styles.isTrollDiv}>{isTroll ? 'Looks like troll!' : 'There is no troll around!'}</div>
+      <div className={styles.isTrollDiv}>{isTroll ? <span className={styles.trollo}>Looks like a troll! </span> : <span className={styles.trollo}>Unlikely a troll!</span>}</div>
     </div>
   )
 }

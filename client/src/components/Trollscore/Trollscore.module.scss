@@ -1,32 +1,37 @@
+@import '../../colors.scss';
+
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 0.5rem;
-  height: 6rem;
-  background: rgb(72, 233, 233);
+  font-family: 'Baloo 2';
+  color: $colorOrange;
+  font-weight: 900;
 
   .scoreDiv {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    height: 40%;
+    gap: 0.8rem;
+    height: 4rem;
 
     .percentage {
       display: flex;
-      font-size: 1.7em;
+      font-size: 3.5rem;
     }
 
     .trollScore {
       display: flex;
-      align-items: flex-end;
-      text-align: left;
+      font-size: 1.6rem;
       line-height: 0.9;
     }
   }
 
   .isTrollDiv {
-    font-size: 1.5em;
+    display: flex;
+    text-align: center;
+
+    .trollo {
+      font-size: 2.2rem;
+    }
   }
 }
