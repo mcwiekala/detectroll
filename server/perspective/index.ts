@@ -36,6 +36,7 @@ type perspectiveResponse = {
   languages: string[]
   detectedLanguages: string[]
 }
+
 const API_KEY = process.env.PERSPECTIVE_API_KEY
 const URL = `https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=${API_KEY}`
 
