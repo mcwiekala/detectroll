@@ -1,20 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./index.scss";
 import Message from "./components/Message/Message";
-
+import Logo from "./components/Logo/Logo";
+import SearchBox from "./components/SearchBox/SearchBox";
+import TextArea from "./components/TextArea/TextArea";
+import MainPage from "./pages/MainPage";
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Welcome to detecTroll!
-          <Message/>
-        </p>
-      </header>
-    </div>
-  );
+  return <MainPage />;
 }
 
 export default App;
