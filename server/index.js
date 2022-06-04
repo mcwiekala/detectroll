@@ -7,6 +7,7 @@ import { getUser, getUserTweets } from './twitter/index.js'
 dotenv.config()
 
 const app = express()
+app.use(express.static('public'))
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -29,14 +30,30 @@ app.get('/api/analyze/:twitterName', async (req, res) => {
   res.send(tweets.data.filter((tweet) => tweet.lang !== 'und').slice(0, 3))
 })
 
+// TODO: remove later:
+
 app.get('/api/json', (req, res) => {
   const jsonData = require('./resources/sample-response.json')
   res.send(jsonData)
 })
 
+// app.get('/', (req, res) => {
+//   res.send('Express + TypeScript Server')
+// })
+
+app.get('/api/message', (req, res) => {
+  res.send('HELLO WORLD!')
+})
+
 app.get('/api/secret', (req, res) => {
   const secret = process.env.SECRET
   res.send(secret)
+})
+
+// ----
+
+app.post('/api/analyze', async (req, res) => {
+  perspective(req, res)
 })
 
 app.listen(PORT, () => {
