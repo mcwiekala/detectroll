@@ -9,24 +9,24 @@ const perspective = async (req, res) => {
     return
   }
   const result = await perspectiveClient.analyze(text, { attributes: ['toxicity', 'insult', 'profanity', 'threat'] })
-  let sum = 0
   const attributes = result.attributeScores
-  let scores = {}
   const attributeWeight = {
     INSULT: 1,
     PROFANITY: 1,
     THREAT: 1,
     TOXICITY: 6,
   }
+  let sum = 0
+  let scores = []
   for (key in attributes) {
     sum += attributeWeight[key] * attributes[key].summaryScore?.value
-    scores = { [key]: attributes[key].summaryScore?.value, ...scores }
+    scores.push({ name: new String(key).toLowerCase(), value: attributes[key].summaryScore?.value })
   }
   const score = sum / 9
   res.send({
     score,
     isTroll: score > 0.7 ? true : false,
-    attributes: scores,
+    attributes: scores.sort((a, b) => a.name.localeCompare(b.name)),
   })
 }
 
