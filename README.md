@@ -20,3 +20,5 @@ To check env:
 heroku config:set SECRET=joesmith
 heroku config
 ```
+
+heroku restart

@@ -1,6 +1,10 @@
-require('dotenv').config()
-const Perspective = require('perspective-api-client')
+import dotenv from "dotenv"
+import Perspective from "perspective-api-client"
+dotenv.config();
+
+
 const perspectiveClient = new Perspective({ apiKey: process.env.PERSPECTIVE_API_KEY })
+
 
 const perspective = async (req, res) => {
   const text = req.body.text
@@ -18,7 +22,7 @@ const perspective = async (req, res) => {
   }
   let sum = 0
   let scores = []
-  for (key in attributes) {
+  for (let key in attributes) {
     sum += attributeWeight[key] * attributes[key].summaryScore?.value
     scores.push({ name: new String(key).toLowerCase(), value: attributes[key].summaryScore?.value })
   }
@@ -30,4 +34,4 @@ const perspective = async (req, res) => {
   })
 }
 
-module.exports = perspective
+export { perspective }
