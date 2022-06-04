@@ -6,8 +6,9 @@ export function Learn() {
   return (
     <div className={styles.container}>
       <div className={styles.text}>
-        Witam serdecznie nasza aplikacja very gut, searching trolls, full of zasadzkas, and be carefull coz a lot of impossible racism aspeków. Stworzona przez zespół ludzi którzy
-        za wszelką cenę postanowili walczyć ze złem trolli.
+        Trolls are antisocial behavior that is created from controversial or offensive content on a website that draws attention, provokes or offends other users.
+        <br />
+        Our app allows you to recognize these negative behaviors!
       </div>
       <Link to="/" className={styles.arrowDiv}>
         <IoIosArrowBack className={styles.icon} />

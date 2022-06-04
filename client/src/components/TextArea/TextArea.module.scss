@@ -1,8 +1,8 @@
-@import "../../colors.scss";
+@import '../../colors.scss';
 
 .textArea {
   font-size: 22px;
-  font-family: "Baloo 2", sans-serif;
+  font-family: 'Baloo 2', sans-serif;
   font-weight: 800;
   background: none;
   color: $colorBlueLight;
@@ -16,7 +16,7 @@
     border: solid 3px $colorBlueLight;
     border-radius: 6px;
     padding: 5px 10px;
-    margin: 2rem;
+    margin: 0.5rem 2rem;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.35);
   }
 }
@@ -28,7 +28,7 @@
 .sendIcon {
   display: inline-block;
   align-self: center;
-  font-family: "Baloo 2", sans-serif;
+  font-family: 'Baloo 2', sans-serif;
   font-size: 28px;
   font-weight: 800;
   color: $colorBlueLight;
