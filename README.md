@@ -1,5 +1,8 @@
 # detecTroll
 
+![alt text](./docs/troll.png)
+
+
 https://heroku-test-195.herokuapp.com/
 
 For logs:
