@@ -27,12 +27,20 @@
 
 .sendIcon {
   display: inline-block;
+  align-self: center;
   font-family: "Baloo 2", sans-serif;
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 800;
-  padding: 4px;
-  padding-left: 10px;
   color: $colorBlueLight;
-  align-self: flex-end;
-  justify-self: flex-end;
+  &Container {
+    padding-right: 5px;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    align-self: flex-end;
+    padding: 5px;
+    padding-left: 10px;
+  }
 }

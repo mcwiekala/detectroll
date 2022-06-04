@@ -1,6 +1,5 @@
 @import "../../colors.scss";
-.searchBox,
-.searchBox::placeholder {
+.searchBox {
   background: none;
   border: none;
   align-self: center;
@@ -11,6 +10,9 @@
   color: $colorBlueLight;
   width: 100%;
   outline: none;
+}
+.searchBox::placeholder {
+  color: $colorBlueLight;
 }
 
 .searchBoxContainer {
@@ -36,8 +38,15 @@
   display: inline-block;
   align-self: center;
   font-family: "Baloo 2", sans-serif;
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 800;
   color: $colorBlueLight;
-  padding-right: 5px;
+  &Container {
+    padding-right: 5px;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+  }
 }

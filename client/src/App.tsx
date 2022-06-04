@@ -5,14 +5,9 @@ import Message from "./components/Message/Message";
 import Logo from "./components/Logo/Logo";
 import SearchBox from "./components/SearchBox/SearchBox";
 import TextArea from "./components/TextArea/TextArea";
+import MainPage from "./pages/MainPage";
 function App() {
-  return (
-    <>
-      <Logo />
-      <SearchBox />
-      <TextArea />
-    </>
-  );
+  return <MainPage />;
 }
 
 export default App;
