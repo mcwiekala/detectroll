@@ -2,6 +2,11 @@
 
 ![alt text](./docs/troll.png)
 
+To run app locally use:
+```
+npm run start:dev
+```
+
 
 https://heroku-test-195.herokuapp.com/
 
