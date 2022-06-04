@@ -15,10 +15,10 @@ const TextArea = () => {
       .catch((error) => console.error(error))
   }
   return (
-    <form onSubmit={handleSubmit(onSubmit)} class={styles.textAreaContainer}>
-      <textarea class={styles.textArea} placeholder="type some text to check" {...register('messageText')}></textarea>
-      <button type="submit" class={styles.sendIconContainer}>
-        <IoSend class={styles.sendIcon} />
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.textAreaContainer}>
+      <textarea className={styles.textArea} placeholder="type some text to check" {...register('messageText')}></textarea>
+      <button type="submit" className={styles.sendIconContainer}>
+        <IoSend className={styles.sendIcon} />
       </button>
     </form>
   )

@@ -1,0 +1,26 @@
+@import '../../colors.scss';
+.shortInfo {
+  font-family: 'Baloo 2', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  text-align: center;
+  color: $colorGreenDark;
+  margin-bottom: 0;
+  &Container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+  }
+}
+
+.learnMore,
+.learnMore:visited {
+  display: block;
+  font-family: 'Baloo 2', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  text-decoration: none;
+  color: $colorBlueDark;
+}
