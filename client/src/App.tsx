@@ -1,11 +1,33 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./index.scss";
-import Message from "./components/Message/Message";
 import Logo from "./components/Logo/Logo";
+import ProgressBar from "./components/ProgressBar/ProgressBar";
 
 function App() {
-  return <Logo />;
+  const array = [
+    {
+      name: "Toxicity",
+      value: 0.9646382,
+    },
+    {
+      name: "Insult",
+      value: 0.51453596,
+    },
+    {
+      name: "Threat",
+      value: 0.856526693,
+    },
+    {
+      name: "Profanity",
+      value: 0.56211716,
+    },
+  ];
+  return (
+    <>
+      <Logo />
+      <ProgressBar data={array} />
+    </>
+  );
 }
 
 export default App;

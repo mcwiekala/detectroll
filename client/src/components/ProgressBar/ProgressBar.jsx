@@ -1,24 +1,16 @@
-import { Line } from "rc-progress";
 import styles from "./ProgressBar.module.scss";
+import Bar from "../Bar/Bar.jsx";
 
 const ProgressBar = ({ data }) => {
-  const defaultColor = {
-    strokeColor: "#D28254",
-    trailColor: "rgba(210, 130, 84, 0.3)",
-  };
-
   return (
-    <div>
-      {data.map((item) => {
+    <div className={styles.progressBar}>
+      {data.map(({ name, value }) => {
         return (
-          <div className={styles.progressBar__container}>
-            <span className={styles.progressBar__title}>{item.name}</span>
-            <Line
-              percent={item.value * 100}
-              strokeWidth={1}
-              strokeColor={defaultColor.strokeColor}
-              trailColor={defaultColor.trailColor}
-            />
+          <div key={name} className={styles.progressBar__container}>
+            <span className={styles.progressBar__title}>
+              {name.toLowerCase()}
+            </span>
+            <Bar completed={value * 100} />
           </div>
         );
       })}
