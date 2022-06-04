@@ -3,6 +3,9 @@ import cors from 'cors'
 import express, { Response, Request } from 'express'
 import perspective from './perspective/index.js'
 import { getUser, getUserTweets } from './twitter/index.js'
+import { tweet } from './twitter/tweet.js'
+import { attributeKeys } from './perspective/types.js'
+import { handleMessage } from './messages.js'
 
 const app = express()
 app.use(express.static('public'))
@@ -22,7 +25,18 @@ app.post('/api/analyze', async (req: Request, res: Response) => {
     res.status(400).send('No language provided!')
     return
   }
-  res.send(await perspective(res, text, lang))
+  const analysis = await perspective(res, text, lang)
+  if (analysis == undefined) {
+    return
+  }
+  const scores: { name: string; value: number }[] = []
+  const attributes = analysis.attributes
+  let key: keyof typeof attributes
+  for (key in attributes) {
+    scores.push({ name: new String(key).toLowerCase(), value: attributes[key] })
+  }
+  scores.sort((a, b) => a.name.localeCompare(b.name))
+  res.send(handleMessage({ score: analysis.score, isTroll: analysis.isTroll, attributes: scores }))
 })
 
 app.get('/api/analyze/:twitterName', async (req, res) => {
@@ -37,7 +51,37 @@ app.get('/api/analyze/:twitterName', async (req, res) => {
     return
   }
 
-  res.send(tweets.data.filter((tweet: { lang: string; text: string; id: string }) => tweet.lang !== 'und').slice(0, 3))
+  const latestTweets: tweet[] = tweets.data.filter((tweet: { lang: string; text: string; id: string }) => tweet.lang !== 'und').slice(0, 3)
+  const initialAttributeValue = { score: 0, count: 0 }
+  let attributes: { [key in attributeKeys]: typeof initialAttributeValue } = {
+    INSULT: initialAttributeValue,
+    PROFANITY: initialAttributeValue,
+    THREAT: initialAttributeValue,
+    TOXICITY: initialAttributeValue,
+  }
+  let totalScore: number = 0
+  for (const { text, lang } of latestTweets) {
+    const analysis = await perspective(res, text, lang)
+    if (analysis == undefined) {
+      res.status(404).send('Could not get analysis!')
+      return
+    }
+    let attributeName: keyof typeof attributes
+    for (attributeName in attributes) {
+      attributes[attributeName].score += analysis.attributes[attributeName]
+      attributes[attributeName].count++
+    }
+    totalScore += analysis.score
+  }
+  const scores: { name: string; value: number }[] = []
+  let attributeName: keyof typeof attributes
+  for (attributeName in attributes) {
+    if (attributes[attributeName].count !== 0) {
+      scores.push({ name: new String(attributeName).toLowerCase(), value: attributes[attributeName].score / attributes[attributeName].count })
+    }
+  }
+  scores.sort((a, b) => a.name.localeCompare(b.name))
+  res.send(handleMessage({ score: totalScore / 3, isTroll: totalScore > 0.7 ? true : false, attributes: scores }))
 })
 
 // TODO: remove later:
