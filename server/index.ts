@@ -28,11 +28,10 @@ app.post('/api/analyze', async (req: Request, res: Response) => {
 app.get('/api/analyze/:twitterName', async (req, res) => {
   let user = JSON.parse(await getUser(req.params.twitterName))
   if (user.errors) {
-    res.status(404).send('No user found!')
+    res.status(404).send('No users found!')
     return
   }
   const tweets = JSON.parse(await getUserTweets(user.data.id))
-
   if (tweets.meta.result_count === 0) {
     res.status(404).send('No tweets found!')
     return

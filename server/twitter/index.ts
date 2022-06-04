@@ -17,7 +17,7 @@ const getUser = async (userName: string) => {
 }
 
 const getUserTweets = async (id: string) => {
-  const response = await fetch(`${TWITTER_API_URL}/users/${id}/tweets?tweet.fields=lang&exclude=replies,retweets&`, {
+  const response = await fetch(`${TWITTER_API_URL}/users/${id}/tweets?tweet.fields=lang&exclude=replies,retweets`, {
     method: 'get',
     headers: {
       'User-Agent': 'v2UserLookupJS',
