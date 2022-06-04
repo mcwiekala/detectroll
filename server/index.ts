@@ -80,7 +80,7 @@ app.get('/api/analyze/:twitterName', async (req, res) => {
     }
   }
   scores.sort((a, b) => a.name.localeCompare(b.name))
-  res.send({ score: totalScore / 3, isTroll: totalScore > 0.7 ? true : false, attributes: scores })
+  res.send(handleMessage({ score: totalScore / 3, isTroll: totalScore > 0.7 ? true : false, attributes: scores }))
 })
 
 // TODO: remove later:
