@@ -14,6 +14,7 @@ const getUser = async (userName) => {
         "authorization": `Bearer ${TOKEN}`
       },
     });
+    console.log(`twitter.getUser - the response from Twitter is: [${response.text()}]`)
   
     return await response.text();
   }
