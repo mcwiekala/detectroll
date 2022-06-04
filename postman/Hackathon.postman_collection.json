@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "fc4b11aa-bd47-415c-98a5-6bcb581ff333",
+		"_postman_id": "818bcef7-8ce1-454e-b600-2446a004ffc9",
 		"name": "Hackathon",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -82,6 +82,14 @@
 								}
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user tasks",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
@@ -254,12 +262,12 @@
 	"variable": [
 		{
 			"key": "PS_KEY",
-			"value": "AIzaSyB_NEgc-1_bWkXhDEo2U4rkfXvhoKi8DcI",
+			"value": "",
 			"type": "default"
 		},
 		{
 			"key": "TW_KEY",
-			"value": "AAAAAAAAAAAAAAAAAAAAAIhwdAEAAAAAkj06oHuZ3156BNHsq03%2FvPla%2Bu4%3DsRubuzgJwj1605C6T4x412dkskzjV6AxLotiKCY3f32cLvUuA2",
+			"value": "",
 			"type": "default"
 		}
 	]
