@@ -3,7 +3,7 @@ import dotenv from "dotenv"
 
 dotenv.config()
 
-const token = process.env.TWITTER_API_TOKEN;
+const TOKEN = process.env.TWITTER_API_TOKEN;
 const URL = process.env.TWITTER_API_URL;
 
 const getUser = async (userName) => {
@@ -11,7 +11,7 @@ const getUser = async (userName) => {
       method: "get",
       headers: {
         "User-Agent": "v2UserLookupJS",
-        "authorization": `Bearer ${token}`
+        "authorization": `Bearer ${TOKEN}`
       },
     });
   
@@ -28,7 +28,7 @@ const getUser = async (userName) => {
       method: "get",
       headers: {
         "User-Agent": "v2UserLookupJS",
-        "authorization": `Bearer ${token}`
+        "authorization": `Bearer ${TOKEN}`
       },
     });
     return await response.text();
