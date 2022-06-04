@@ -1,16 +1,10 @@
 import 'dotenv/config'
 import fetch from 'node-fetch'
 import { Response } from 'express'
+import { attributeWeight } from './algorithm'
 
 const coreLangs = ['de', 'en', 'es', 'fr', 'it', 'pt', 'ru']
 const additionalLangs = ['ar', 'zh', 'cs', 'nl', 'hi', 'hi-Latin', 'id', 'ja', 'ko', 'pl']
-
-const attributeWeight = {
-  INSULT: 1,
-  PROFANITY: 1,
-  THREAT: 1,
-  TOXICITY: 6,
-}
 
 type perspectiveResponse = {
   attributeScores: {
@@ -94,18 +88,18 @@ const perspective = async (res: Response, text: string, lang: string) => {
   }
   const attributes = result.attributeScores
   let sum = 0
-  const scores: { name: string; value: number }[] = []
+  let scores: { [key in keyof typeof attributeWeight]: number } = { INSULT: 0, PROFANITY: 0, THREAT: 0, TOXICITY: 0 }
   let key: keyof typeof attributes
   for (key in attributes) {
     sum += attributeWeight[key] * attributes[key].summaryScore.value
-    scores.push({ name: new String(key).toLowerCase(), value: attributes[key].summaryScore.value })
+    scores[key] = attributes[key].summaryScore.value
   }
   const score = sum / 9
-  res.send({
+  return {
     score,
     isTroll: score > 0.7 ? true : false,
-    attributes: scores.sort((a, b) => a.name.localeCompare(b.name)),
-  })
+    attributes: scores,
+  }
 }
 
 export default perspective
