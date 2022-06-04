@@ -92,12 +92,8 @@ app.get('/api/json', (req, res) => {
   res.send(jsonData)
 })
 
-// app.get('/', (req, res) => {
-//   res.send('Express + TypeScript Server')
-// })
-
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build', 'index.html'), (err) => {
+  res.sendFile(path.join(path.resolve(), '/public', 'index.html'), (err) => {
     if (err) {
       console.log(err)
     }
