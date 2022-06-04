@@ -1,8 +1,8 @@
 import LogoSVG from './troll3.svg'
 import styles from './Logo.module.scss'
-const Logo = () => {
+const Logo = (props) => {
   return (
-    <div className={styles.logoContainer}>
+    <div {...props} className={`${styles.logoContainer} ${props.className || ''}`}>
       <img src={LogoSVG} className={styles.logo} />
       <h1 className={styles.title}>
         <span className={styles.titleColor1}>detec</span>

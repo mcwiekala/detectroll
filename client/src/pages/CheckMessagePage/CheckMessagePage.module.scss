@@ -1,0 +1,12 @@
+.pageContainer {
+  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.logo {
+  padding: 1.3rem;
+  padding-bottom: 0;
+}
