@@ -1,0 +1,266 @@
+{
+	"info": {
+		"_postman_id": "fc4b11aa-bd47-415c-98a5-6bcb581ff333",
+		"name": "Hackathon",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Twitter",
+			"item": [
+				{
+					"name": "Get User ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.twitter.com/2/users/by/username/:username",
+							"protocol": "https",
+							"host": [
+								"api",
+								"twitter",
+								"com"
+							],
+							"path": [
+								"2",
+								"users",
+								"by",
+								"username",
+								":username"
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "elonmusk"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Latest User Tweets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.twitter.com/2/users/:id/tweets?tweet.fields=lang&exclude=replies,retweets",
+							"protocol": "https",
+							"host": [
+								"api",
+								"twitter",
+								"com"
+							],
+							"path": [
+								"2",
+								"users",
+								":id",
+								"tweets"
+							],
+							"query": [
+								{
+									"key": "max_results",
+									"value": "10",
+									"description": "Optional. Latest tweets (5 - 100)",
+									"disabled": true
+								},
+								{
+									"key": "tweet.fields",
+									"value": "lang",
+									"description": "Tweet language"
+								},
+								{
+									"key": "exclude",
+									"value": "replies,retweets",
+									"description": "Things to exclude"
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "44196397"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{TW_KEY}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Perspective API",
+			"item": [
+				{
+					"name": "Get comment toxicity",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"comment\": {\n        \"text\": \"scheisse\"\n    },\n       \"languages\": [\n        \"de\"\n    ],\n       \"requestedAttributes\": {\n            \"TOXICITY\": {}\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key={{PS_KEY}}",
+							"protocol": "https",
+							"host": [
+								"commentanalyzer",
+								"googleapis",
+								"com"
+							],
+							"path": [
+								"v1alpha1",
+								"comments:analyze"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{PS_KEY}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get comment toxicity [de]",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"comment\": {\n        \"text\": \"what kind of idiot name is foo?\"\n    },\n       \"languages\": [\n        \"en\"\n    ],\n       \"requestedAttributes\": {\n            \"TOXICITY\": {},\n            \"THREAT\": {},\n            \"INSULT\": {},\n            \"TOXICITY_EXPERIMENTAL\": {}\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key={{PS_KEY}}",
+							"protocol": "https",
+							"host": [
+								"commentanalyzer",
+								"googleapis",
+								"com"
+							],
+							"path": [
+								"v1alpha1",
+								"comments:analyze"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{PS_KEY}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get comment attributes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"comment\": {\n        \"text\": \"what kind of idiot name is foo?\"\n    },\n       \"languages\": [\n        \"en\"\n    ],\n       \"requestedAttributes\": {\n            \"TOXICITY\": {}\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key={{PS_KEY}}",
+							"protocol": "https",
+							"host": [
+								"commentanalyzer",
+								"googleapis",
+								"com"
+							],
+							"path": [
+								"v1alpha1",
+								"comments:analyze"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{PS_KEY}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "PS_KEY",
+			"value": "AIzaSyB_NEgc-1_bWkXhDEo2U4rkfXvhoKi8DcI",
+			"type": "default"
+		},
+		{
+			"key": "TW_KEY",
+			"value": "AAAAAAAAAAAAAAAAAAAAAIhwdAEAAAAAkj06oHuZ3156BNHsq03%2FvPla%2Bu4%3DsRubuzgJwj1605C6T4x412dkskzjV6AxLotiKCY3f32cLvUuA2",
+			"type": "default"
+		}
+	]
+}
