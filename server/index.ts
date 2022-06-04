@@ -3,7 +3,7 @@ const express = require('express')
 const cors = require('cors')
 const path = require('path')
 const jsonData = require('./resources/sample-response.json')
-const perspective = require('./perspective')
+const perspectiveApi = require('./perspective')
 
 const app = express()
 
@@ -14,24 +14,24 @@ app.use(express.urlencoded({ extended: false }))
 
 const PORT = process.env.PORT || 8000
 
-app.get('/', (req, res) => {
+app.get('/', (req: Express.Request, res: Express.Response) => {
   res.send('Express + TypeScript Server')
 })
 
-app.get('/api/message', (req, res) => {
+app.get('/api/message', (req: Express.Request, res: Express.Response) => {
   res.send('HELLO WORLD!')
 })
 
-app.get('/api/json', (req, res) => {
+app.get('/api/json', (req: Express.Request, res: Express.Response) => {
   const jsonData = require('./resources/sample-response.json')
   res.send(jsonData)
 })
 
-app.get('/api/secret', (req, res) => {
+app.get('/api/secret', (req: Express.Request, res: Express.Response) => {
   const secret = process.env.SECRET
   res.send(secret)
 })
-app.post('/api/analyze', async (req, res) => {
+app.post('/api/analyze', async (req: Express.Request, res: Express.Response) => {
   perspective(req, res)
 })
 
