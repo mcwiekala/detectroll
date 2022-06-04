@@ -1,0 +1,16 @@
+@import '../../colors.scss';
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 2rem;
+  background: white;
+  color: $colorOrange;
+  font-size: 0.8rem;
+  font-weight: 800;
+  font-family: 'Baloo 2';
+}
