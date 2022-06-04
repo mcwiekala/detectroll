@@ -1,6 +1,6 @@
 import { perspectiveClientResponse } from './perspective/types'
 
-const messages: { [key: string]: string } = {
+const messageMap: { [key: string]: string } = {
   '1000': 'Do not insult other people!',
   '0100': "You shouldn't curse, children can see it!",
   '0010': 'Threats are criminalised!',
@@ -25,8 +25,8 @@ export const handleMessage = (result: perspectiveClientResponse) => {
   if (messageCode.length < 4) {
     messageCode = '000' + messageCode
   }
-  if (messages.hasOwnProperty(messageCode)) {
-    result.message = messages[messageCode]
+  if (messageMap.hasOwnProperty(messageCode)) {
+    result.message = messageMap[messageCode]
   } else {
     result.message = undefined
   }
