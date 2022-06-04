@@ -37,7 +37,7 @@ app.get('/api/analyze/:twitterName', async (req, res) => {
     return
   }
 
-  res.send(tweets.data.filter((tweet) => tweet.lang !== 'und').slice(0, 3))
+  res.send(tweets.data.filter((tweet: { lang: string; text: string; id: string }) => tweet.lang !== 'und').slice(0, 3))
 })
 
 // TODO: remove later:
