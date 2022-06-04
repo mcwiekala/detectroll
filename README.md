@@ -12,7 +12,7 @@ https://heroku-test-195.herokuapp.com/
 
 For logs:
 ```
-heroku logs --tail --app heroku-test-195
+heroku logs --tail --app detectroll
 ```
 
 To check env:
