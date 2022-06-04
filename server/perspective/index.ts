@@ -2,19 +2,19 @@ import 'dotenv/config'
 import fetch from 'node-fetch'
 import { Response } from 'express'
 
-enum attributesTypes {
-  TOXICITY = 'TOXICITY',
-  INSULT = 'INSULT',
-  PROFANITY = 'PROFANITY',
-  THREAT = 'THREAT',
-}
-
 const coreLangs = ['de', 'en', 'es', 'fr', 'it', 'pt', 'ru']
 const additionalLangs = ['ar', 'zh', 'cs', 'nl', 'hi', 'hi-Latin', 'id', 'ja', 'ko', 'pl']
 
+const attributeWeight = {
+  INSULT: 1,
+  PROFANITY: 1,
+  THREAT: 1,
+  TOXICITY: 6,
+}
+
 type perspectiveResponse = {
   attributeScores: {
-    [key in attributesTypes]: {
+    [key in keyof typeof attributeWeight]: {
       spanScores: [
         {
           begin: number
@@ -33,13 +33,6 @@ type perspectiveResponse = {
   }
   languages: string[]
   detectedLanguages: string[]
-}
-
-const attributeWeight: { [key in attributesTypes]: number } = {
-  INSULT: 1,
-  PROFANITY: 1,
-  THREAT: 1,
-  TOXICITY: 6,
 }
 
 const API_KEY = process.env.PERSPECTIVE_API_KEY
