@@ -22,7 +22,7 @@ const perspective = async (req, res) => {
   }
   let sum = 0
   let scores = []
-  for (key in attributes) {
+  for (let key in attributes) {
     sum += attributeWeight[key] * attributes[key].summaryScore?.value
     scores.push({ name: new String(key).toLowerCase(), value: attributes[key].summaryScore?.value })
   }
