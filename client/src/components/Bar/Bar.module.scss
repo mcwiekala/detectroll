@@ -1,0 +1,21 @@
+@import "../../colors.scss";
+.bar {
+  height: 1rem;
+  width: 100%;
+  background-color: rgba($colorGreenDark, 0.35);
+  border-radius: 50px;
+
+  &Troll {
+    background-color: rgba($colorOrange, 0.35);
+  }
+
+  &__line {
+    height: 100%;
+    background-color: $colorGreenDark;
+    border-radius: 50px;
+
+    &Troll {
+      background-color: $colorOrange;
+    }
+  }
+}
