@@ -1,5 +1,5 @@
 {
-  "name": "heroku-fullstack-js",
+  "name": "detecttroll",
   "version": "0.0.1",
   "author": "Michal Cwiekala",
   "scripts": {
@@ -15,8 +15,5 @@
     "start:dev": "npm run start:client & npm run start:server",
     "start:client": "(cd ./client && npm run start)",
     "start:server": "(cd ./server && npm run start:watch)"
-  },
-  "dependencies": {
-    "sass": "^1.52.2"
   }
 }
