@@ -1,14 +1,13 @@
-import './index.scss'
-import Logo from './components/Logo/Logo'
-import { Trollscore } from './components/Trollscore/Trollscore'
-import { LearnMorePage } from './pages/LearnMorePage'
-
+import React from "react";
+import logo from "./logo.svg";
+import "./index.scss";
+import Message from "./components/Message/Message";
+import Logo from "./components/Logo/Logo";
+import SearchBox from "./components/SearchBox/SearchBox";
+import TextArea from "./components/TextArea/TextArea";
+import MainPage from "./pages/MainPage";
 function App() {
-  return (
-    <div>
-      <LearnMorePage />
-    </div>
-  )
+  return <MainPage />;
 }
 
 export default App
