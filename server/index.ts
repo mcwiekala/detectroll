@@ -25,18 +25,18 @@ app.post('/api/analyze', async (req: Request, res: Response) => {
     res.status(400).send('No language provided!')
     return
   }
-  const result = await perspective(res, text, lang)
-  if (result == undefined) {
+  const analysis = await perspective(res, text, lang)
+  if (analysis == undefined) {
     return
   }
   const scores: { name: string; value: number }[] = []
-  const attributes = result.attributes
+  const attributes = analysis.attributes
   let key: keyof typeof attributes
   for (key in attributes) {
     scores.push({ name: new String(key).toLowerCase(), value: attributes[key] })
   }
   scores.sort((a, b) => a.name.localeCompare(b.name))
-  res.send(handleMessage({ score: result.score, isTroll: result.isTroll, attributes: scores }))
+  res.send(handleMessage({ score: analysis.score, isTroll: analysis.isTroll, attributes: scores }))
 })
 
 app.get('/api/analyze/:twitterName', async (req, res) => {
@@ -61,17 +61,17 @@ app.get('/api/analyze/:twitterName', async (req, res) => {
   }
   let totalScore: number = 0
   for (const { text, lang } of latestTweets) {
-    const result = await perspective(res, text, lang)
-    if (result == undefined) {
+    const analysis = await perspective(res, text, lang)
+    if (analysis == undefined) {
       res.status(404).send('Could not get analysis!')
       return
     }
     let attributeName: keyof typeof attributes
     for (attributeName in attributes) {
-      attributes[attributeName].score += result.attributes[attributeName]
+      attributes[attributeName].score += analysis.attributes[attributeName]
       attributes[attributeName].count++
     }
-    totalScore += result.score
+    totalScore += analysis.score
   }
   const scores: { name: string; value: number }[] = []
   let attributeName: keyof typeof attributes
