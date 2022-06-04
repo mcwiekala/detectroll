@@ -6,12 +6,15 @@
   text-align: center;
   color: $colorGreenDark;
   margin-bottom: 0;
+  padding: 0;
+  margin: 0;
   &Container {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-items: center;
+    margin-top: 0.5rem;
   }
 }
 
