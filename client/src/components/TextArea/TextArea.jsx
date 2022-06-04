@@ -7,7 +7,7 @@ const TextArea = () => {
   const searchText = watch("messageText");
   const onSubmit = () => {
     axios
-      .post("https://detectroll.herokuapp.com/api/analyze", {
+      .post("/api/analyze", {
         text: searchText,
       })
       .then((response) => console.log(response.data))
