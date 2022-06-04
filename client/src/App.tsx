@@ -1,7 +1,7 @@
-import React from "react";
 import "./index.scss";
 import Logo from "./components/Logo/Logo";
 import ProgressBar from "./components/ProgressBar/ProgressBar";
+import Summary from "./components/Summary/Summary";
 
 function App() {
   const array = [
@@ -26,6 +26,7 @@ function App() {
     <>
       <Logo />
       <ProgressBar data={array} />
+      <Summary />
     </>
   );
 }
