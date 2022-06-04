@@ -52,11 +52,12 @@ app.get('/api/analyze/:twitterName', async (req, res) => {
   }
 
   const latestTweets: tweetType[] = tweets.data.filter((tweet: { lang: string; text: string; id: string }) => tweet.lang !== 'und').slice(0, 3)
-  let attributes: { [key in keyof typeof attributeWeight]: number[] } = {
-    INSULT: [0, 0],
-    PROFANITY: [0, 0],
-    THREAT: [0, 0],
-    TOXICITY: [0, 0],
+  const initialAttributeValue = { score: 0, count: 0 }
+  let attributes: { [key in keyof typeof attributeWeight]: typeof initialAttributeValue } = {
+    INSULT: initialAttributeValue,
+    PROFANITY: initialAttributeValue,
+    THREAT: initialAttributeValue,
+    TOXICITY: initialAttributeValue,
   }
   let totalScore: number = 0
   for (const { text, lang } of latestTweets) {
@@ -65,18 +66,18 @@ app.get('/api/analyze/:twitterName', async (req, res) => {
       res.status(404).send('Could not get analysis!')
       return
     }
-    let key: keyof typeof attributes
-    for (key in attributes) {
-      attributes[key][0] += result.attributes[key]
-      attributes[key][1] += 1
+    let attributeName: keyof typeof attributes
+    for (attributeName in attributes) {
+      attributes[attributeName].score += result.attributes[attributeName]
+      attributes[attributeName].count++
     }
     totalScore += result.score
   }
   const scores: { name: string; value: number }[] = []
-  let key: keyof typeof attributes
-  for (key in attributes) {
-    if (attributes[key][1] !== 0) {
-      scores.push({ name: new String(key).toLowerCase(), value: attributes[key][0] / attributes[key][1] })
+  let attributeName: keyof typeof attributes
+  for (attributeName in attributes) {
+    if (attributes[attributeName].count !== 0) {
+      scores.push({ name: new String(attributeName).toLowerCase(), value: attributes[attributeName].score / attributes[attributeName].count })
     }
   }
   scores.sort((a, b) => a.name.localeCompare(b.name))
