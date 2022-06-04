@@ -39,7 +39,7 @@ app.get('/analyze/:twitterName', async (req, res) => {
   let user = JSON.parse(await getUser(req.params.twitterName))
   const tweets = JSON.parse(await getUserTweets(user.data.id))
   
-  res.send(tweets.data.slice(0,3))
+  res.send(tweets.data.filter(tweet => (tweet.lang !== "und")).slice(0,3))
 });
 
 app.get('/api/json', (req, res) => {
