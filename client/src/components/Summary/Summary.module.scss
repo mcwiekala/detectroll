@@ -5,7 +5,8 @@
   gap: 2rem;
   margin: 0 auto;
   align-items: center;
-  padding: 2rem;
+  padding: 1.5rem 2rem;
+  padding-top: 0.5rem;
 
   @media (min-width: 667px) {
     gap: 3rem;
@@ -21,7 +22,7 @@
   }
 
   &__desc {
-    font-family: "Baloo 2", sans-serif;
+    font-family: 'Baloo 2', sans-serif;
     font-size: 1.2rem;
     font-weight: 700;
     line-height: 1.3;

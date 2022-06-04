@@ -5,7 +5,7 @@ const Summary = () => {
   return (
     <div className={styles.summary}>
       <img src={Troll} alt="" className={styles.summary__logo} />
-      <span className={styles.summary__desc}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium mollitia id laboriosam porro tenetur.</span>
+      <span className={styles.summary__desc}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium mollitia.</span>
     </div>
   )
 }
