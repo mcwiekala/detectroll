@@ -2,32 +2,10 @@ import 'dotenv/config'
 import fetch from 'node-fetch'
 import { Response } from 'express'
 import { attributeWeight } from './algorithm.js'
+import { perspectiveApiResponse } from './types.js'
 
 const coreLangs = ['de', 'en', 'es', 'fr', 'it', 'pt', 'ru']
 const additionalLangs = ['ar', 'zh', 'cs', 'nl', 'hi', 'hi-Latin', 'id', 'ja', 'ko', 'pl']
-
-type perspectiveResponse = {
-  attributeScores: {
-    [key in keyof typeof attributeWeight]: {
-      spanScores: [
-        {
-          begin: number
-          end: number
-          score: {
-            value: number
-            type: string
-          }
-        },
-      ]
-      summaryScore: {
-        value: number
-        type: string
-      }
-    }
-  }
-  languages: string[]
-  detectedLanguages: string[]
-}
 
 const API_KEY = process.env.PERSPECTIVE_API_KEY
 const URL = `https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=${API_KEY}`
@@ -73,7 +51,7 @@ const getAnalyze = async (text: string, lang: string) => {
   if (!requestedAttributes || !attributeCount) {
     return { result: null, attributeCount: 'This language is not supported!' }
   }
-  const result: perspectiveResponse = await handleAnalysis(text, lang, requestedAttributes)
+  const result: perspectiveApiResponse = await handleAnalysis(text, lang, requestedAttributes)
   if (result === null) {
     return { result: null, attributeCount: 'Error' }
   }

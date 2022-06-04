@@ -5,6 +5,7 @@ import perspective from './perspective/index.js'
 import { getUser, getUserTweets } from './twitter/index.js'
 import { tweetType } from './twitter/tweetType.js'
 import { attributeWeight } from './perspective/algorithm.js'
+import { handleMessage } from './messages.js'
 
 const app = express()
 app.use(express.static('public'))
@@ -35,7 +36,7 @@ app.post('/api/analyze', async (req: Request, res: Response) => {
     scores.push({ name: new String(key).toLowerCase(), value: attributes[key] })
   }
   scores.sort((a, b) => a.name.localeCompare(b.name))
-  res.send({ score: result.score, isTroll: result.isTroll, attributes: scores })
+  res.send(handleMessage({ score: result.score, isTroll: result.isTroll, attributes: scores }))
 })
 
 app.get('/api/analyze/:twitterName', async (req, res) => {
