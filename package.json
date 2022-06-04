@@ -15,5 +15,9 @@
     "start:dev": "npm run start:client & npm run start:server",
     "start:client": "(cd ./client && npm run start)",
     "start:server": "(cd ./server && npm run start:watch)"
+  },
+  "dependencies": {
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.3"
   }
 }
