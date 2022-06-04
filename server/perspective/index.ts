@@ -60,7 +60,7 @@ const getAnalyze = async (text: string, lang: string) => {
 
 const perspective = async (res: Response, text: string, lang: string) => {
   const { result, attributeCount } = await getAnalyze(text, lang)
-  if (result == null || attributeCount == null) {
+  if (result == null || typeof attributeCount == 'string') {
     res.status(400).send(attributeCount)
     return
   }
@@ -72,7 +72,7 @@ const perspective = async (res: Response, text: string, lang: string) => {
     sum += attributeWeight[key] * attributes[key].summaryScore.value
     scores[key] = attributes[key].summaryScore.value
   }
-  const score = sum / 9
+  const score = sum / attributeCount
   return {
     score,
     isTroll: score > 0.7 ? true : false,
