@@ -4,8 +4,6 @@ import { Response } from 'express'
 
 enum attributesTypes {
   TOXICITY = 'TOXICITY',
-  SEVERE_TOXICITY = 'SEVERE_TOXICITY',
-  IDENTITY_ATTACK = 'IDENTITY_ATTACK',
   INSULT = 'INSULT',
   PROFANITY = 'PROFANITY',
   THREAT = 'THREAT',
@@ -35,6 +33,13 @@ type perspectiveResponse = {
   }
   languages: string[]
   detectedLanguages: string[]
+}
+
+const attributeWeight: { [key in attributesTypes]: number } = {
+  INSULT: 1,
+  PROFANITY: 1,
+  THREAT: 1,
+  TOXICITY: 6,
 }
 
 const API_KEY = process.env.PERSPECTIVE_API_KEY
@@ -70,13 +75,13 @@ const getAnalyze = async (text: string, lang: string) => {
       PROFANITY: {},
       INSULT: {},
     }
-    attributeCount = 9
+    attributeCount = attributeWeight.TOXICITY + attributeWeight.THREAT + attributeWeight.INSULT + attributeWeight.PROFANITY
   }
   if (additionalLangs.includes(lang)) {
     requestedAttributes = {
       TOXICITY: {},
     }
-    attributeCount = 6
+    attributeCount = attributeWeight.TOXICITY
   }
   if (!requestedAttributes || !attributeCount) {
     return { result: null, attributeCount: 'This language is not supported!' }
@@ -95,14 +100,6 @@ const perspective = async (res: Response, text: string, lang: string) => {
     return
   }
   const attributes = result.attributeScores
-  const attributeWeight: { [key in attributesTypes]: number } = {
-    INSULT: 1,
-    PROFANITY: 1,
-    THREAT: 1,
-    TOXICITY: 6,
-    IDENTITY_ATTACK: 0,
-    SEVERE_TOXICITY: 0,
-  }
   let sum = 0
   const scores: { name: string; value: number }[] = []
   let key: keyof typeof attributes
