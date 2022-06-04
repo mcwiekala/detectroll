@@ -2,6 +2,7 @@ import 'dotenv/config'
 import cors from 'cors'
 import express, { Response, Request } from 'express'
 import perspective from './perspective/index.js'
+import path from 'node:path'
 import { getUser, getUserTweets } from './twitter/index.js'
 import { tweet } from './twitter/tweet.js'
 import { attributeKeys } from './perspective/types.js'
@@ -94,6 +95,14 @@ app.get('/api/json', (req, res) => {
 // app.get('/', (req, res) => {
 //   res.send('Express + TypeScript Server')
 // })
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'), (err) => {
+    if (err) {
+      console.log(err)
+    }
+  })
+})
 
 app.get('/api/message', (req, res) => {
   res.send('HELLO WORLD!')
