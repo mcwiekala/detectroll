@@ -1,22 +1,45 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const cors = require('cors')
-const path = require("path");
-const jsonData = require("./resources/sample-response.json");
+import cors from "cors"
+import path from "path"
+import dotenv from "dotenv"
+import express from "express"
+import fetch from 'node-fetch'
+
 dotenv.config();
 
 const app = express();
-
-app.use(express.static(path.join(__dirname + "/public")))
+const token = process.env.BEARER_TOKEN;
 app.use(cors())
 const PORT = process.env.PORT || 8000;
 
-app.get('/', (req, res) => {
-  res.send('Express + TypeScript Server');
-});
 
-app.get('/api/message', (req, res) => {
-  res.send('HELLO WORLD!');
+const getUser = async (userName) => {
+  const response = await fetch(`https://api.twitter.com/2/users/by/username/${userName}`, {
+    method: "get",
+    headers: {
+      "User-Agent": "v2UserLookupJS",
+      "authorization": `Bearer ${token}`
+    },
+  });
+  return await response.text();
+}
+
+
+const getUserTweets = async (id) => {
+    const response = await fetch(`https://api.twitter.com/2/users/${id}/tweets?tweet.fields=lang&exclude=replies,retweets`, {
+    method: "get",
+    headers: {
+      "User-Agent": "v2UserLookupJS",
+      "authorization": `Bearer ${token}`
+    },
+  });
+  return await response.text();
+}
+
+app.get('/analyze/:twitterName', async (req, res) => {
+  let user = JSON.parse(await getUser(req.params.twitterName))
+  const tweets = JSON.parse(await getUserTweets(user.data.id))
+  
+  res.send(tweets.data.slice(0,3))
 });
 
 app.get('/api/json', (req, res) => {
