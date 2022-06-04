@@ -1,7 +1,7 @@
 import 'dotenv/config'
 import fetch from 'node-fetch'
 import { Response } from 'express'
-import { attributeWeight } from './algorithm'
+import { attributeWeight } from './algorithm.js'
 
 const coreLangs = ['de', 'en', 'es', 'fr', 'it', 'pt', 'ru']
 const additionalLangs = ['ar', 'zh', 'cs', 'nl', 'hi', 'hi-Latin', 'id', 'ja', 'ko', 'pl']

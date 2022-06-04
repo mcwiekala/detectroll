@@ -51,7 +51,6 @@ app.get('/api/analyze/:twitterName', async (req, res) => {
   }
 
   const latestTweets: tweetType[] = tweets.data.filter((tweet: { lang: string; text: string; id: string }) => tweet.lang !== 'und').slice(0, 3)
-  // console.log(`Tweets: ${latestTweets}`)
   let attributes: { [key in keyof typeof attributeWeight]: number[] } = {
     INSULT: [0, 0],
     PROFANITY: [0, 0],
@@ -60,7 +59,6 @@ app.get('/api/analyze/:twitterName', async (req, res) => {
   }
   let totalScore: number = 0
   for (const { text, lang } of latestTweets) {
-    //   console.log('text:', text, ',lang:', lang)
     const result = await perspective(res, text, lang)
     if (result == undefined) {
       res.status(404).send('Could not get analysis!')
@@ -82,7 +80,6 @@ app.get('/api/analyze/:twitterName', async (req, res) => {
   }
   scores.sort((a, b) => a.name.localeCompare(b.name))
   res.send({ score: totalScore / 3, isTroll: totalScore > 0.7 ? true : false, attributes: scores })
-  // res.send(tweets.data.filter((tweet: { lang: string; text: string; id: string }) => tweet.lang !== 'und').slice(0, 3))
 })
 
 // TODO: remove later:
