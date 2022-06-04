@@ -1,0 +1,33 @@
+@import "../../colors.scss";
+.searchBox,
+.searchBox::placeholder {
+  background: none;
+  border: none;
+  align-self: center;
+  margin-bottom: -2px;
+  font-size: 22px;
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 800;
+  color: $colorBlueLight;
+  width: 100%;
+  outline: none;
+}
+
+.searchBoxContainer {
+  display: flex;
+  border: solid 3px $colorBlueLight;
+  border-radius: 6px;
+  padding: 2px 10px;
+  margin: 2rem;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.35);
+}
+
+.searchBoxAtIcon {
+  display: inline-block;
+  align-self: center;
+  font-family: "Baloo 2", sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: $colorBlueLight;
+  padding-right: 10px;
+}
