@@ -40,9 +40,19 @@ app.get('/api/analyze/:twitterName', async (req, res) => {
   res.send(tweets.data.filter((tweet) => tweet.lang !== 'und').slice(0, 3))
 })
 
+// TODO: remove later:
+
 app.get('/api/json', (req, res) => {
   const jsonData = require('./resources/sample-response.json')
   res.send(jsonData)
+})
+
+// app.get('/', (req, res) => {
+//   res.send('Express + TypeScript Server')
+// })
+
+app.get('/api/message', (req, res) => {
+  res.send('HELLO WORLD!')
 })
 
 app.get('/api/secret', (req, res) => {
