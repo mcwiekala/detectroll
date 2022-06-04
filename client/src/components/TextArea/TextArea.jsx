@@ -9,6 +9,7 @@ const TextArea = () => {
     axios
       .post('/api/analyze', {
         text: searchText,
+        lang: 'en',
       })
       .then((response) => console.log(response.data))
       .catch((error) => console.error(error))

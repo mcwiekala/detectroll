@@ -116,4 +116,11 @@ server/public
 client/build
 
 **/node_modules
+**/node_modules/
 **.env
+.vscode
+
+# node_modules
+node_modules
+client/node_modules
+server/node_modules
