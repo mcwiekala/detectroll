@@ -1,0 +1,32 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  height: 6rem;
+  background: rgb(72, 233, 233);
+
+  .scoreDiv {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 40%;
+
+    .percentage {
+      display: flex;
+      font-size: 1.7em;
+    }
+
+    .trollScore {
+      display: flex;
+      align-items: flex-end;
+      text-align: left;
+      line-height: 0.9;
+    }
+  }
+
+  .isTrollDiv {
+    font-size: 1.5em;
+  }
+}
