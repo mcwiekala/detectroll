@@ -1,7 +1,6 @@
-require('dotenv').config()
-// const fetch = require('node-fetch')
-const PerspectiveClass = require('perspective-api-client')
-const perspectiveClient = new PerspectiveClass({ apiKey: process.env.PERSPECTIVE_API_KEY })
+import 'dotenv/config'
+import fetch from 'node-fetch'
+import { Response } from 'express'
 
 enum attributesTypes {
   TOXICITY = 'TOXICITY',
@@ -37,36 +36,61 @@ type perspectiveResponse = {
   languages: string[]
   detectedLanguages: string[]
 }
+const API_KEY = process.env.PERSPECTIVE_API_KEY
+const URL = `https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=${API_KEY}`
 
-const getAnalyze = async (text: string, lang: string) => {
-  if (lang in coreLangs) {
-    const result: perspectiveResponse = await perspectiveClient.analyze({
+const handleAnalysis = async (text: string, lang: string, requestedAttributes: { [key: string]: {} }) => {
+  const res = await fetch(URL, {
+    method: 'post',
+    headers: {
+      'User-Agent': 'DetectTroll',
+    },
+    body: JSON.stringify({
       comment: {
         text,
       },
       languages: [lang],
-      requestedAttributes: {
-        TOXICITY: {},
-      },
-    })
-    return { result, attributeCount: 9 }
+      requestedAttributes,
+    }),
+  })
+  if (res.status === 404) {
+    return null
   }
-  if (lang in additionalLangs) {
-    const result: perspectiveResponse = await perspectiveClient.analyze(text, { attributes: ['toxicity'] })
-    return { result, attributeCount: 6 }
-  }
-  return { result: null, attributeCount: null }
+  return await JSON.parse(await res.text())
 }
 
-const perspective = async (req, res, lang: string) => {
-  const text = req.body.text
-  if (!text) {
-    res.status(400).send('No text provided!')
-    return
+const getAnalyze = async (text: string, lang: string) => {
+  let requestedAttributes
+  let attributeCount
+  if (lang in coreLangs) {
+    requestedAttributes = {
+      TOXICITY: {},
+      THREAT: {},
+      PROFANITY: {},
+      INSULT: {},
+    }
+    attributeCount = 9
   }
+  if (lang in additionalLangs) {
+    requestedAttributes = {
+      TOXICITY: {},
+    }
+    attributeCount = 6
+  }
+  if (!requestedAttributes || !attributeCount) {
+    return { result: null, attributeCount: 'This language is not supported!' }
+  }
+  const result: perspectiveResponse = await handleAnalysis(text, lang, requestedAttributes)
+  if (result === null) {
+    return { result: null, attributeCount: 'Error' }
+  }
+  return { result, attributeCount }
+}
+
+const perspective = async (res: Response, text: string, lang: string) => {
   const { result, attributeCount } = await getAnalyze(text, lang)
   if (result == null || attributeCount == null) {
-    res.status(400).send('This language is not supported!')
+    res.status(400).send(attributeCount)
     return
   }
   console.log(result)
@@ -94,4 +118,4 @@ const perspective = async (req, res, lang: string) => {
   })
 }
 
-module.exports = perspective
+export default perspective
