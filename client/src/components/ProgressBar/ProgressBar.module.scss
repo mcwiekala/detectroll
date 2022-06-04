@@ -1,0 +1,18 @@
+.progressBar {
+  &__container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1.5rem;
+  }
+
+  &__title {
+    margin-right: 1.5rem;
+    min-width: 4rem;
+    text-align: end;
+  }
+
+  &__bar {
+    height: 2rem;
+    stroke: #d28254;
+  }
+}
