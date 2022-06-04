@@ -114,3 +114,5 @@ server/node_modules
 
 server/public
 client/build
+
+**/node_modules
