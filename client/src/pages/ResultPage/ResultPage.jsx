@@ -4,6 +4,7 @@ import ProgressBar from '../../components/ProgressBar/ProgressBar'
 import SearchBox from '../../components/SearchBox/SearchBox'
 import Summary from '../../components/Summary/Summary'
 import { Trollscore } from '../../components/Trollscore/Trollscore'
+import styles from './ResultPage.module.scss'
 
 const ResultPage = () => {
   const data = [
@@ -28,7 +29,9 @@ const ResultPage = () => {
   return (
     <div>
       <Logo />
-      <SearchBox />
+      <div className={styles.container}>
+        <SearchBox />
+      </div>
       <Trollscore />
       <ProgressBar data={data} />
       <Summary />
