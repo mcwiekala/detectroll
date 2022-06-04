@@ -4,7 +4,7 @@ import express, { Response, Request } from 'express'
 import perspective from './perspective/index.js'
 import { getUser, getUserTweets } from './twitter/index.js'
 import { tweet } from './twitter/tweet.js'
-import { attributeWeight } from './perspective/algorithm.js'
+import { attributeKeys } from './perspective/types.js'
 import { handleMessage } from './messages.js'
 
 const app = express()
@@ -53,7 +53,7 @@ app.get('/api/analyze/:twitterName', async (req, res) => {
 
   const latestTweets: tweet[] = tweets.data.filter((tweet: { lang: string; text: string; id: string }) => tweet.lang !== 'und').slice(0, 3)
   const initialAttributeValue = { score: 0, count: 0 }
-  let attributes: { [key in keyof typeof attributeWeight]: typeof initialAttributeValue } = {
+  let attributes: { [key in attributeKeys]: typeof initialAttributeValue } = {
     INSULT: initialAttributeValue,
     PROFANITY: initialAttributeValue,
     THREAT: initialAttributeValue,

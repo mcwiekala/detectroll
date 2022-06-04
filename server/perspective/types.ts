@@ -7,9 +7,11 @@ export type perspectiveClientResponse = {
   message?: string
 }
 
+export type attributeKeys = keyof typeof attributeWeight
+
 export type perspectiveApiResponse = {
   attributeScores: {
-    [key in keyof typeof attributeWeight]: {
+    [key in attributeKeys]: {
       spanScores: [
         {
           begin: number

@@ -2,7 +2,7 @@ import 'dotenv/config'
 import fetch from 'node-fetch'
 import { Response } from 'express'
 import { attributeWeight } from './algorithm.js'
-import { perspectiveApiResponse } from './types.js'
+import { perspectiveApiResponse, attributeKeys } from './types.js'
 
 const coreLangs = ['de', 'en', 'es', 'fr', 'it', 'pt', 'ru']
 const additionalLangs = ['ar', 'zh', 'cs', 'nl', 'hi', 'hi-Latin', 'id', 'ja', 'ko', 'pl']
@@ -66,7 +66,7 @@ const perspective = async (res: Response, text: string, lang: string) => {
   }
   const attributes = result.attributeScores
   let sum = 0
-  let scores: { [key in keyof typeof attributeWeight]: number } = { INSULT: 0, PROFANITY: 0, THREAT: 0, TOXICITY: 0 }
+  let scores: { [key in attributeKeys]: number } = { INSULT: 0, PROFANITY: 0, THREAT: 0, TOXICITY: 0 }
   let key: keyof typeof attributes
   for (key in attributes) {
     sum += attributeWeight[key] * attributes[key].summaryScore.value
