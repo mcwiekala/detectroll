@@ -42,7 +42,7 @@ const TextArea = () => {
       })
       .then((response) => {
         if (response?.data?.score) {
-          navigate('/result', { data: response.data })
+          navigate('/result', { state: response.data })
         }
       })
       .catch((error) => console.error(error))

@@ -7,15 +7,17 @@
   justify-content: space-between;
   width: 100%;
   min-height: 100vh;
+}
 
+.logo {
+  padding: 1.25rem;
+  padding-bottom: 0;
+  transform: scale(0.8);
+}
+
+.searchContainer {
   @media screen and (min-width: 1024px) {
     display: flex;
     justify-content: center;
-  }
-
-  .logo {
-    padding: 1.25rem;
-    padding-bottom: 0;
-    transform: scale(0.8);
   }
 }
