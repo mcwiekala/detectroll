@@ -37,6 +37,16 @@
   padding-right: 10px;
 }
 
+.spinner {
+  display: inline-block;
+  align-self: center;
+  font-family: 'Baloo 2', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: $colorBlueLight;
+  animation: spin 1s ease-in-out infinite;
+}
+
 .sendIcon {
   display: inline-block;
   align-self: center;
@@ -82,5 +92,14 @@
     flex-direction: column;
     align-items: flex-end;
     width: 50%;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

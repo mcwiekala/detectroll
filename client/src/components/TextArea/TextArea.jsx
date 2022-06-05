@@ -1,5 +1,6 @@
 import styles from './TextArea.module.scss'
 import { IoSend } from 'react-icons/io5'
+import { BiRefresh } from 'react-icons/bi'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
@@ -9,6 +10,7 @@ import { useState } from 'react'
 const TextArea = () => {
   const { register, handleSubmit, watch } = useForm()
   const [lang, setLang] = useState()
+  const [loading, setLoading] = useState(false)
   const searchText = watch('messageText')
   const navigate = useNavigate()
   const data = [
@@ -50,8 +52,8 @@ const TextArea = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.textAreaContainer}>
       <textarea className={styles.textArea} placeholder="type some text to check" {...register('messageText')}></textarea>
-      <button type="submit" className={styles.sendIconContainer}>
-        <IoSend className={styles.sendIcon} />
+      <button disabled={loading} type="submit" className={styles.sendIconContainer}>
+        {loading ? <BiRefresh className={styles.spinner} /> : <IoSend className={styles.sendIcon} />}
       </button>
       <Select onChange={selectCallback} />
     </form>

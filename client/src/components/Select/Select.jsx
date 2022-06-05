@@ -1,7 +1,7 @@
 import styles from './Select.module.scss'
 
 const Select = ({ onChange }) => {
-  const coreLangs = ['de', 'en', 'es', 'fr', 'it', 'pt', 'ru', 'cs', 'pl']
+  const coreLangs = ['en', 'de', 'es', 'fr', 'it', 'pt', 'ru', 'cs', 'pl']
 
   return (
     <select onChange={onChange} className={styles.select}>

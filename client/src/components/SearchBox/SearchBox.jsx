@@ -1,11 +1,13 @@
 import styles from './SearchBox.module.scss'
 import { IoSend } from 'react-icons/io5'
+import { BiRefresh } from 'react-icons/bi'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
-import { useEffect } from 'react'
+import { useState } from 'react'
 const SearchBox = ({ className, twitterHandle }) => {
-  const { register, handleSubmit, watch, touchedFields } = useForm({
+  const [loading, setLoading] = useState(false)
+  const { register, handleSubmit, watch } = useForm({
     defaultValues: {
       searchBox: twitterHandle || '',
     },
@@ -14,7 +16,7 @@ const SearchBox = ({ className, twitterHandle }) => {
   const navigate = useNavigate()
   const switchIcons = searchText.length > 0 && searchText !== twitterHandle
   const onSubmit = () => {
-    console.log(searchText)
+    setLoading(true)
     axios
       .get(`/api/analyze/${searchText}`)
       .then((response) => {
@@ -28,15 +30,18 @@ const SearchBox = ({ className, twitterHandle }) => {
         }
       })
       .catch((error) => console.error(error))
+      .finally(() => {
+        setLoading(false)
+      })
   }
   return (
     <div className={`${styles.container} ${className || ''}`}>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.searchBoxContainer}>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.searchBoxContainer} autoComplete="off">
         {!switchIcons && <span className={styles.searchBoxAtIcon}>@</span>}
         <input type="text" className={styles.searchBox} placeholder="twitter handle..." {...register('searchBox')}></input>
         {switchIcons && (
-          <button type="submit" className={styles.sendIconContainer}>
-            <IoSend className={styles.sendIcon} />
+          <button disabled={loading} type="submit" className={styles.sendIconContainer}>
+            {loading ? <BiRefresh className={styles.spinner} /> : <IoSend className={styles.sendIcon} />}
           </button>
         )}
       </form>
