@@ -14,7 +14,7 @@ const ResultPage = () => {
     navigate(-1)
   }
   return (
-    <div>
+    <div className={styles.pageContainer}>
       <Logo className={styles.logo} />
       <SearchBox twitterHandle={state.twitterHandle} className={styles.searchContainer} />
       <Trollscore trollScore={state.score} isTroll={state.isTroll} />
