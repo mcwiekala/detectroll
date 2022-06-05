@@ -1,24 +1,25 @@
-# detecTroll
+<h2 align="center">detecTroll</h2>
 
-![alt text](./docs/troll.png)
+## Project Overview
 
-To run app locally use:
+detecTroll was created to educate about culture on the Internet and to identify people who spread disinformation and toxicity (trolls)
+
+
+![alt text](./docs/detectroll.png)
+
+
+## Installation
+
+```bash
+
+git clone https://github.com/mcwiekala/detectroll.git
+
+npm install
+
+npm run start:deev
+
 ```
-npm run start:dev
-```
 
+## Live 
 
-https://heroku-test-195.herokuapp.com/
-
-For logs:
-```
-heroku logs --tail --app detectroll
-```
-
-To check env:
-```
-heroku config:set SECRET=joesmith
-heroku config
-```
-
-heroku restart
+http://detectroll.herokuapp.com/
