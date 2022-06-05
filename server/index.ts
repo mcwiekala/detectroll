@@ -55,10 +55,10 @@ app.get('/api/analyze/:twitterName', async (req, res) => {
   const latestTweets: tweet[] = tweets.data.filter((tweet: { lang: string; text: string; id: string }) => tweet.lang !== 'und').slice(0, 3)
   const initialAttributeValue = { score: 0, count: 0 }
   let attributes: { [key in attributeKeys]: typeof initialAttributeValue } = {
-    INSULT: initialAttributeValue,
-    PROFANITY: initialAttributeValue,
-    THREAT: initialAttributeValue,
-    TOXICITY: initialAttributeValue,
+    INSULT: { score: 0, count: 0 },
+    PROFANITY: { score: 0, count: 0 },
+    THREAT: { score: 0, count: 0 },
+    TOXICITY: { score: 0, count: 0 },
   }
   let totalScore: number = 0
   for (const { text, lang } of latestTweets) {
