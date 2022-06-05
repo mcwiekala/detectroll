@@ -16,7 +16,9 @@ git clone https://github.com/mcwiekala/detectroll.git
 
 npm install
 
-npm run start:deev
+npm run build
+
+npm run start:dev
 
 ```
 
