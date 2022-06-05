@@ -2,22 +2,24 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2rem;
+  padding: 1rem 2.9rem;
   margin: 0 auto;
 
   &__container {
     display: grid;
-    grid-template-columns: 8rem 1fr;
+    grid-template-columns: 6rem 1fr;
     align-items: center;
-    gap: 2rem;
-    margin: 0.5rem 0;
+    gap: 1.75rem;
+    margin: 0;
   }
 
   &__title {
-    font-size: 1.6rem;
-    font-weight: 700;
+    font-size: 1.2rem;
+    font-weight: 800;
     text-align: end;
-    line-height: 2.5rem;
-    font-family: "Baloo 2", sans-serif;
+    line-height: 2rem;
+    font-family: 'Baloo 2', sans-serif;
+    width: fit-content;
+    justify-self: flex-end;
   }
 }
