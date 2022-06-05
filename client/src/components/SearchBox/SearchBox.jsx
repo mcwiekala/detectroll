@@ -36,7 +36,7 @@ const SearchBox = ({ className, twitterHandle }) => {
   }
   return (
     <div className={`${styles.container} ${className || ''}`}>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.searchBoxContainer} autoComplete="off">
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.searchBoxContainer} autoComplete="off" spellCheck="false">
         {!switchIcons && <span className={styles.searchBoxAtIcon}>@</span>}
         <input type="text" className={styles.searchBox} placeholder="twitter handle..." {...register('searchBox')}></input>
         {switchIcons && (
