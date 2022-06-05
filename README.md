@@ -14,7 +14,16 @@ detecTroll was created to educate about culture on the Internet and to identify 
 
 ## Tech
 
-detecTroll uses machine learning from Perspective API to gauge message content and Twitter API to get 3 last user tweets
+### Perspective API
+
+DetecTroll uses machine learning from Perspective API to gauge message content by 4 attributes: insult, profanity, threat and toxicity in scale from 0 to 1
+
+DetecTroll counts these data into troll score measured as a percentage
+
+### Twitter API
+
+App uses Twitter API to get user by username and 3 lat user tweets by their ID.
+
 
 
 ## Troll attributes
