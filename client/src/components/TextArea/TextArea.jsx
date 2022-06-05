@@ -35,7 +35,6 @@ const TextArea = () => {
   }
 
   const onSubmit = () => {
-    navigate('/result', { state: data })
     axios
       .post('/api/analyze', {
         text: searchText,

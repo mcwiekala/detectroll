@@ -15,9 +15,9 @@ const ResultPage = () => {
     <div>
       <Logo className={styles.logo} />
       <SearchBox />
-      <Trollscore />
-      <ProgressBar data={state} />
-      <Summary />
+      <Trollscore trollScore={state.score} isTroll={state.isTroll} />
+      <ProgressBar data={state.attributes} />
+      <Summary text={state.message} />
       <Footer />
     </div>
   )
