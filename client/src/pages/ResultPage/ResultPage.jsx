@@ -14,7 +14,9 @@ const ResultPage = () => {
   return (
     <div>
       <Logo className={styles.logo} />
-      <SearchBox />
+      <div className={styles.container}>
+        <SearchBox />
+      </div>
       <Trollscore />
       <ProgressBar data={state} />
       <Summary />
