@@ -1,12 +1,23 @@
 import styles from './SearchBox.module.scss'
 import { IoSend } from 'react-icons/io5'
-import { Link } from 'react-router-dom'
-import { useForm, useWatch } from 'react-hook-form'
+import { Link, useNavigate } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import axios from 'axios'
 const SearchBox = (props) => {
   const { register, handleSubmit, watch } = useForm()
   const searchText = watch('searchBox')
+  const navigate = useNavigate()
   const onSubmit = () => {
     console.log(searchText)
+    axios
+      .get(`/api/analyze/${searchText}`)
+      .then((response) => {
+        console.log(response)
+        if (response?.data?.score) {
+          navigate('/result', { state: response.data })
+        }
+      })
+      .catch((error) => console.error(error))
   }
   return (
     <div {...props} className={`${styles.container} ${props.className || ''}`}>

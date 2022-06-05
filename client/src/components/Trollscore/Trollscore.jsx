@@ -1,9 +1,6 @@
 import styles from './Trollscore.module.scss'
-import { useState } from 'react'
 
 export function Trollscore({ trollScore = 0.69, isTroll = true }) {
-  console.log(isTroll)
-
   return (
     <div className={styles.main}>
       <div className={styles.scoreDiv}>
