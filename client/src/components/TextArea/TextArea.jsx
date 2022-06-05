@@ -9,7 +9,7 @@ import { useState } from 'react'
 
 const TextArea = () => {
   const { register, handleSubmit, watch } = useForm()
-  const [lang, setLang] = useState()
+  const [lang, setLang] = useState('en')
   const [loading, setLoading] = useState(false)
   const searchText = watch('messageText')
   const navigate = useNavigate()
