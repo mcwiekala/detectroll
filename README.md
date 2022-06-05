@@ -7,8 +7,9 @@ detecTroll was created to educate about culture on the Internet and to identify 
 ![alt text](./docs/detectroll.png)
 
 ![alt text](./docs/detectroll2.png)
-
-![alt text](./docs/detectroll3.png)
+<p align="center">
+     <img src="./docs/detectroll3.png">
+</p>
 
 
 ## Tech
