@@ -1,0 +1,19 @@
+@import '../../colors.scss';
+
+.select {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+  font-family: 'Baloo 2', sans-serif;
+  font-weight: 800;
+  color: $colorBlueLight;
+  outline: none;
+  option {
+    font-size: 1rem;
+    border: none;
+    color: $colorBlueDark;
+  }
+}
