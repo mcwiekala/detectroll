@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "818bcef7-8ce1-454e-b600-2446a004ffc9",
+		"_postman_id": "fc4b11aa-bd47-415c-98a5-6bcb581ff333",
 		"name": "Hackathon",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -78,18 +78,10 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "44196397"
+									"value": "1342921542372614144"
 								}
 							]
 						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get user tasks",
-					"request": {
-						"method": "GET",
-						"header": []
 					},
 					"response": []
 				}
@@ -135,7 +127,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"comment\": {\n        \"text\": \"scheisse\"\n    },\n       \"languages\": [\n        \"de\"\n    ],\n       \"requestedAttributes\": {\n            \"TOXICITY\": {}\n    }\n}",
+							"raw": "{\n    \"text\": \"Jesteś kurwą jebaną\",\n    \"lang\": \"pl\",\n    \"requestedAttributes\": { \n            \"TOXICITY\": {}\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -143,35 +135,102 @@
 							}
 						},
 						"url": {
-							"raw": "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key={{PS_KEY}}",
+							"raw": "https://detectroll.herokuapp.com/api/analyze",
 							"protocol": "https",
 							"host": [
-								"commentanalyzer",
-								"googleapis",
+								"detectroll",
+								"herokuapp",
 								"com"
 							],
 							"path": [
-								"v1alpha1",
-								"comments:analyze"
-							],
-							"query": [
-								{
-									"key": "key",
-									"value": "{{PS_KEY}}"
-								}
+								"api",
+								"analyze"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get comment toxicity",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"text\": \"Jesteś kurwą jebaną\",\n    \"lang\": \"pl\",\n    \"requestedAttributes\": { \n            \"TOXICITY\": {}\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://detectroll.herokuapp.com/api/analyze",
+									"protocol": "https",
+									"host": [
+										"detectroll",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"api",
+										"analyze"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "97"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"61-3lBQwCW5PFFkABwu3A1hByZtl4Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Jun 2022 20:48:09 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"score\": 0.5927017333333333,\n    \"isTroll\": false,\n    \"attributes\": [\n        {\n            \"name\": \"toxicity\",\n            \"value\": 0.8890526\n        }\n    ]\n}"
+						}
+					]
 				},
 				{
-					"name": "Get comment toxicity [de]",
+					"name": "Get comment toxicity [en]",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"comment\": {\n        \"text\": \"what kind of idiot name is foo?\"\n    },\n       \"languages\": [\n        \"en\"\n    ],\n       \"requestedAttributes\": {\n            \"TOXICITY\": {},\n            \"THREAT\": {},\n            \"INSULT\": {},\n            \"TOXICITY_EXPERIMENTAL\": {}\n    }\n}",
+							"raw": "{\n    \"comment\": {\n        \"text\": \"what kind of idiot name is foo?\"\n    },\n       \"languages\": [\n        \"en\"\n    ],\n       \"requestedAttributes\": { \n            \"TOXICITY\": {},\n            \"THREAT\": {},\n            \"PROFANITY\": {},\n            \"INSULT\": {}\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -198,16 +257,116 @@
 							]
 						}
 					},
-					"response": []
-				},
+					"response": [
+						{
+							"name": "Get comment toxicity [en]",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"comment\": {\n        \"text\": \"what kind of idiot name is foo?\"\n    },\n       \"languages\": [\n        \"en\"\n    ],\n       \"requestedAttributes\": { \n            \"TOXICITY\": {},\n            \"THREAT\": {},\n            \"PROFANITY\": {},\n            \"INSULT\": {}\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key={{PS_KEY}}",
+									"protocol": "https",
+									"host": [
+										"commentanalyzer",
+										"googleapis",
+										"com"
+									],
+									"path": [
+										"v1alpha1",
+										"comments:analyze"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{PS_KEY}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "X-Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Referer"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Jun 2022 20:48:14 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "ESF"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "private"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Alt-Svc",
+									"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\""
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"attributeScores\": {\n        \"INSULT\": {\n            \"spanScores\": [\n                {\n                    \"begin\": 0,\n                    \"end\": 31,\n                    \"score\": {\n                        \"value\": 0.69093835,\n                        \"type\": \"PROBABILITY\"\n                    }\n                }\n            ],\n            \"summaryScore\": {\n                \"value\": 0.69093835,\n                \"type\": \"PROBABILITY\"\n            }\n        },\n        \"TOXICITY\": {\n            \"spanScores\": [\n                {\n                    \"begin\": 0,\n                    \"end\": 31,\n                    \"score\": {\n                        \"value\": 0.78524166,\n                        \"type\": \"PROBABILITY\"\n                    }\n                }\n            ],\n            \"summaryScore\": {\n                \"value\": 0.78524166,\n                \"type\": \"PROBABILITY\"\n            }\n        },\n        \"PROFANITY\": {\n            \"spanScores\": [\n                {\n                    \"begin\": 0,\n                    \"end\": 31,\n                    \"score\": {\n                        \"value\": 0.46674287,\n                        \"type\": \"PROBABILITY\"\n                    }\n                }\n            ],\n            \"summaryScore\": {\n                \"value\": 0.46674287,\n                \"type\": \"PROBABILITY\"\n            }\n        },\n        \"THREAT\": {\n            \"spanScores\": [\n                {\n                    \"begin\": 0,\n                    \"end\": 31,\n                    \"score\": {\n                        \"value\": 0.015616217,\n                        \"type\": \"PROBABILITY\"\n                    }\n                }\n            ],\n            \"summaryScore\": {\n                \"value\": 0.015616217,\n                \"type\": \"PROBABILITY\"\n            }\n        }\n    },\n    \"languages\": [\n        \"en\"\n    ],\n    \"detectedLanguages\": [\n        \"en\"\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Testing",
+			"item": [
 				{
-					"name": "Get comment attributes",
+					"name": "Analyze comment",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"comment\": {\n        \"text\": \"what kind of idiot name is foo?\"\n    },\n       \"languages\": [\n        \"en\"\n    ],\n       \"requestedAttributes\": {\n            \"TOXICITY\": {}\n    }\n}",
+							"raw": "{\n    \"text\": \"Fuck you!\",\n    \"lang\": \"en\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -215,26 +374,256 @@
 							}
 						},
 						"url": {
-							"raw": "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key={{PS_KEY}}",
-							"protocol": "https",
+							"raw": "http://localhost:8000/api/analyze",
+							"protocol": "http",
 							"host": [
-								"commentanalyzer",
-								"googleapis",
-								"com"
+								"localhost"
 							],
+							"port": "8000",
 							"path": [
-								"v1alpha1",
-								"comments:analyze"
-							],
-							"query": [
+								"api",
+								"analyze"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Analyze comment",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"text\": \"Fuck you!\",\n    \"lang\": \"en\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/analyze",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"analyze"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
 								{
-									"key": "key",
-									"value": "{{PS_KEY}}"
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "209"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d1-4maBmfsqntBk81l3Dn2f1H+4wjk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Jun 2022 15:49:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"score\": 0.753045151111111,\n    \"isTroll\": true,\n    \"attributes\": [\n        {\n            \"name\": \"insult\",\n            \"value\": 0.42110226\n        },\n        {\n            \"name\": \"profanity\",\n            \"value\": 0.48811787\n        },\n        {\n            \"name\": \"threat\",\n            \"value\": 0.03128723\n        },\n        {\n            \"name\": \"toxicity\",\n            \"value\": 0.9728165\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Analyze user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\": \"Ez z tobą\",\n    \"lang\": \"pl\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/analyze/:username",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"analyze",
+								":username"
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "DonaldTrumpet91",
+									"description": "Twwter username"
 								}
 							]
 						}
 					},
+					"response": [
+						{
+							"name": "Analyze user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"text\": \"Ez z tobą\",\n    \"lang\": \"pl\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/analyze/:username",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"analyze",
+										":username"
+									],
+									"variable": [
+										{
+											"key": "username",
+											"value": "DonaldTrumpet91",
+											"description": "Twwter username"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "237"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ed-8edvsCP1kjjp0thWA39QNdX/gA0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Jun 2022 20:45:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"score\": 0.7614245702222222,\n    \"isTroll\": true,\n    \"attributes\": [\n        {\n            \"name\": \"insult\",\n            \"value\": 0.46090590333333337\n        },\n        {\n            \"name\": \"profanity\",\n            \"value\": 0.55862511\n        },\n        {\n            \"name\": \"threat\",\n            \"value\": 0.23764027866666662\n        },\n        {\n            \"name\": \"toxicity\",\n            \"value\": 0.9326083066666667\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Analyze comment [heroku]",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\": \"Ez z tobą\",\n    \"lang\": \"pl\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://detectroll.herokuapp.com/api/analyze",
+							"protocol": "https",
+							"host": [
+								"detectroll",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"analyze"
+							]
+						}
+					},
 					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		}
@@ -262,12 +651,12 @@
 	"variable": [
 		{
 			"key": "PS_KEY",
-			"value": "",
+			"value": "AIzaSyB_NEgc-1_bWkXhDEo2U4rkfXvhoKi8DcI",
 			"type": "default"
 		},
 		{
 			"key": "TW_KEY",
-			"value": "",
+			"value": "AAAAAAAAAAAAAAAAAAAAAIhwdAEAAAAASHtAILDWJ3We0E%2B%2B%2BeC1%2BgBC4dI%3DR9J1yTHMHYKy7isv5iMIXk02tW2GPZe4kKTEhQVF6TZV3wUhdV",
 			"type": "default"
 		}
 	]
