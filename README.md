@@ -1,54 +1,56 @@
-<h2 align="center">detecTroll</h2>
+# DetecTroll
 
 ## Project Overview
 
-detecTroll was created to educate about culture on the Internet and to identify people who spread disinformation and toxicity (trolls)
+This is a team project created during the Hack a Troll hackathon, where we received the audience award! 🥇
 
-![alt text](./docs/detectroll.png)
+detecTroll was created to help identify troll accounts on Twitter and raise awareness about toxic behavior on the Internet.
 
-![alt text](./docs/detectroll2.png)
-<p align="center">
-     <img src="./docs/detectroll3.png">
+## Live demo
+
+http://detectroll.herokuapp.com/
+
+Best viewed on mobile screens, as we didn't have enough time to fully design a desktop UI.
+
+<p style="display:grid; grid-template-columns: 1fr 1fr; grid-gap: 1em; max-width: 700px; margin-bottom: 2em;">
+     <img style="height: 100%;" src="./docs/screen1.png">
+     <img style="height: 100%;" src="./docs/screen2.png">
 </p>
 
+## Team
 
-## Tech
+- Michał Ćwiękała - mentor
+- Krystian Gaczyński - frontend, UI
+- Mateusz Binięda - frontend
+- Karol Wolski - frontend
+- Krzysztof Mackiewicz - backend, API integration
+- Filip Glura - backend
 
-### Perspective API
+## Technologies
 
-DetecTroll uses machine learning from Perspective API to gauge message content by 4 attributes: insult, profanity, threat and toxicity in scale from 0 to 1
+### APIs
 
-DetecTroll counts these data into troll score measured as a percentage
+- Twitter API
+- Perspective API
 
-### Twitter API
+### Frontend
 
-App uses Twitter API to get user by username and 3 lat user tweets by their ID.
+- React
+- React Router
+- React Hook Form
+- Axios
+- SCSS modules
 
+### Backend
 
+- Express
 
-## Troll attributes
-
-insult - Insulting, inflammatory, or negative comment towards a person or a group of people.
-
-profanity - Swear words, curse words, or other obscene or profane language.
-
-threat - Describes an intention to inflict pain, injury, or violence against an individual or group.
-
-toxicity - A rude, disrespectful, or unreasonable comment that is likely to make people leave a discussion.
-
+DetecTroll uses Twitter API to get 3 latest tweets by the specified user and send their content to Perspective API where the messages are evaluated in 4 categories: insult, profanity, threat, toxicity. These values are then used to calculate the total "troll score" and display a custom message, for example "Others may feel threatened by your words!"
 
 ## Installation
 
 ```bash
-
 git clone https://github.com/mcwiekala/detectroll.git
-
 npm install
-
 npm run start:dev
-
 ```
-
-## Live 
-
-http://detectroll.herokuapp.com/
